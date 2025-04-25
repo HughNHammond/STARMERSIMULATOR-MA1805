@@ -66,10 +66,10 @@ let player = {
     },
 
     modifyPublicRating: function(publicAdd) {
-    //This function calculate a value in a random range and adds it to nextPublicRating
-        let publicChange;
-        if (publicAdd === null || publicAdd === undefined) publicChange =  Math.round(random(-1, 1));
-        else publicChange = publicAdd;
+    //This function modifies public rating
+        let publicChange; //creates temporary values, then determines if it will be...
+        if (publicAdd === null || publicAdd === undefined) publicChange =  Math.round(random(-1, 1)); //a minor random change
+        else publicChange = publicAdd; //or will take a value from the parameter and add it as a flat number
 
         this.nextPublicRating = this.publicRating + publicChange;
     },
