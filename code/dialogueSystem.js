@@ -34,6 +34,7 @@ function createDialogueEvents() {
         func: write '() =>' then the name of the function + any parameters in brackets. '() =>' delays calling the function until node.func() is called in my script 
         (under updateDialogue!). If i just wrote e.g. 'func: endGame(kicked)' then it would be called when the the object is first created in setup(), not when 
         the dialogue is displayed!
+        func2: same as func, but for nodes with more than one function attached
         response: an array containing further objects (see below)
 
         RESPONSE NODES:
@@ -173,10 +174,12 @@ function createDialogueEvents() {
         {label: "disability10", speaker: player.name, dialogue: "Last week, I visited an Amazon Fulfilment Centre and I realised something."},
         {label: "disability11", speaker: player.name, dialogue: "Working in an Amazon Warehouse isn't just gruelling physical labour, it can also be a great form of physio therapy.", func: () => player.modifyPressRating(5, 10)},
         {label: "disability12", speaker: player.name, dialogue: "I saw workers stretch key muscle groups reaching for packages on a high shelf.", func: () => player.modifyPressRating(5, 10)},
-        {label: "disability13", speaker: player.name, dialogue: "I saw workers working on their cardio as they rushed around at break-neck speeds"},
-        {label: "disability14", speaker: player.name, dialogue: "I saw workers who were so dedicated to their work that they wouldn't even take a break to go to the toilet, but instead pee in bottles, improving their fine motor skills."},
-        {label: "disability15", speaker: player.name, dialogue: "Such dedication is commendable, adn the Labour Party isn't afraid to let everyone pee in bottles should CEOs ask for it."},
-        {label: "Disability16", speaker: reporter, dialogue: "Well, that clears up any moral issues for me.", func: () => player.modifyPressRating(5, 10), response: econSpeechResponses},
+        {label: "disability13", speaker: player.name, dialogue: "I saw workers gaining muscle mass rushing around the warehouse at break-necks speeds."},
+        {label: "disability14", speaker: player.name, dialogue: "Oh, uh, I didn't say break-neck, I said proportional speeds."},
+        {label: "disability15", speaker: player.name, dialogue: "I saw workers so committed to their work, they didn't have toilet breaks. They peed in bottles! That's the kind of work ethic disabled people can learn at Amazon!"},
+        {label: "disability16", speaker: player.name, dialogue: "I used to pee in bottles, but my wife doesn't let me anymore."},
+        {label: "disability17", speaker: player.name, dialogue: "But that doesn't mean disabled people can't pee in bottles, and it is the Labour Party who has the courage to let them."},
+        {label: "Disability18", speaker: reporter, dialogue: "Well, that clears up any moral issues for me!", func: () => player.modifyPressRating(5, 10), func2: () => player.modifyPublicRating(), response: econSpeechResponses},
 
         //EMPATHISE WITH PUBLIC
         //{label: "empathy1", speaker: player.name, dialogue: ""}
@@ -190,7 +193,7 @@ function createDialogueEvents() {
         {label: "empathy8", speaker: player.name, dialogue: "Luckily, my son picked up a local paper route and mowed some neighbours lawns so we could keep going to Waitrose."},
         {label: "empathy9", speaker: player.name, dialogue: "Why don't you see if you can get a local paper route, or see if your neighbours need their lawn mowing?"},
         {label: "empathy10", speaker: player.name, dialogue: "If we all did that, we could all go to Waitrose, which I think would be fun."},
-        {label: "empathy11", speaker: reporter, dialogue: "Terrifying news from Westminster as PM suggests I do manual labour.", func: () => player.modifyPressRating(-5, -10), response: econSpeechResponses},
+        {label: "empathy11", speaker: reporter, dialogue: "Terrifying news from Westminster as PM suggests I do manual labour.", func: () => player.modifyPressRating(-5, -10), func2: () => player.modifyPublicRating(), response: econSpeechResponses},
 
         //PROPOSE A SMALL WEALTH TAX
         //{label: "wealth1", speaker: player.name, dialogue: " "},
@@ -199,7 +202,7 @@ function createDialogueEvents() {
         {label: "wealth3", speaker: player.name, dialogue: "Those in the highest tax bracket will have their tax rate increased by 0.00001%.", func: () => player.modifyPressRating(-20, -30)},
         {label: "wealth4", speaker: reporter, dialogue: "Mr Prime Minister! This just in from Laura Kuenssberg: apparently every millionaire is now leaving the country, including Laura Kuenssberg!"},
         {label: "wealth5", speaker: player.name, dialogue: "Oh uhhhh, forget that, we're not doing that. That was just me being my usual funny self!"},
-        {label: "wealth6", speaker: player.name, dialogue: "Haw haw haw.", response: econSpeechResponses},
+        {label: "wealth6", speaker: player.name, dialogue: "Haw haw haw.", func2: () => player.modifyPublicRating(), response: econSpeechResponses},
 
         //FIX THE NHS
         //{label: "NHS1", speaker: player.name, dialogue: " "},
@@ -214,7 +217,7 @@ function createDialogueEvents() {
         {label: "NHS9", speaker: player.name, dialogue: "The program can help you create simple remedies from household items like honey and bleach,"},
         {label: "NHS10", speaker: player.name, dialogue: "to directing patients to their nearest funeral parlour so they can arrive prompty upon their death."},
         {label: "NHS11", speaker: player.name, dialogue: "It will even give you instructions on how to perform life-saving surgeries on to perform life-saving surgeries on yourself."},
-        {label: "NHS1", speaker: player.name, dialogue: "The possibilities are amazing. All that money wasted on surgeons and nurses, back in the British Public's hands.", func: () => player.modifyPressRating(10, 15), response: econSpeechResponses},
+        {label: "NHS1", speaker: player.name, dialogue: "The possibilities are amazing. All that money wasted on surgeons and nurses, back in the British Public's hands.", func: () => player.modifyPressRating(10), func2: () => player.modifyPublicRating(), response: econSpeechResponses},
         
         //ADDRESS HOUSING CRISIS
         //{label: "housing1", speaker: player.name, dialogue: " "},
@@ -225,12 +228,12 @@ function createDialogueEvents() {
         {label: "housing5", speaker: player.name, dialogue: 'My answer to this is "because construction CEOs are actually very nice people".'},
         {label: "housing6", speaker: player.name, dialogue: "One bought me this suit. It's very nice."},
         {label: "housing7", speaker: player.name, dialogue: "I can ask him if he'll get you one if you like."},
-        {label: "housing8", speaker: reporter, dialogue: "He's talking about my Dad <3", func: () => player.modifyPressRating(5, 10)},
+        {label: "housing8", speaker: reporter, dialogue: "He's talking about my Dad <3", func: () => player.modifyPressRating(5, 10), func2: () => player.modifyPublicRating()},
         {label: "housing8", speaker: otherReporters, dialogue: "Awwwwww...", response: econSpeechResponses},
 
         {label: "growth1", speaker: player.name, dialogue: "...",},
         {label: "growth2", speaker: player.name, dialogue: "......"},
-        {label: "growth3", speaker: player.name, dialogue: "GROOOWWTTTHHH!!!!", func: () => player.modifyPressRating(5, 10), response: econSpeechResponses},
+        {label: "growth3", speaker: player.name, dialogue: "GROOOWWTTTHHH!!!!", func: () => player.modifyPressRating(5, 10), func2: () => player.modifyPublicRating(), response: econSpeechResponses},
 
         //BE INEXPLICABLY RACIST
         {label: "racism", speaker: player.name, dialogue: "[Author's Note: I ain't writing this.]", func: () => player.modifyPressRating(100, 100), response: econSpeechResponses},
@@ -241,12 +244,12 @@ function createDialogueEvents() {
         {label: "left3", speaker: player.name, dialogue: "We're outflanking Reform from the right on immigration, and it's still not working!"},
         {label: "left4", speaker: player.name, dialogue: "What if..."},
         {label: "left4", speaker: player.name, dialogue: "What if we actually addressed the material, economic inequalities that define this country?"},
-        {label: "left5", speaker: player.name, dialogue: "What if we actually addressed that we live in a society based on the exploitation of the poor by the rich?"},
+        {label: "left5", speaker: player.name, dialogue: "What if we actually addressed that we live in a society based on the exploitation of the poor by the rich?", func: () => player.modifyPublicRating(5, 10)},
         {label: "left6", speaker: player.name, dialogue: "Or if that's too much..."},
         {label: "left7", speaker: player.name, dialogue: "How about we just stopped being so racist?", func: () => endGame(kicked)},
         
         //End Speech
-        {label: "end1", speaker: player.name, dialogue: "Sacrifices must be made, but it is necessary to build Britain back bett- I mean to get Britain's future back, together.", func: () => setPressCompletedToTrue()},
+        {label: "end1", speaker: player.name, dialogue: "Sacrifices must be made, but it is necessary to build Britain back bett- I mean to get Britain's future back, together.", func: () => setPressCompletedToTrue(), func2: () => player.modifyPublicRating()},
     ]
 }
 
@@ -278,8 +281,9 @@ function updateDialogue() { //Called each time player presses space bar to dismi
 function updateFromDialogueNode() {
     //Called when player dismisses a dialogue node (i.e. not when selecting a response node)
 
-    //Checks if dialogue has a function to run
+    //Checks if dialogue has a functions to run
     if (currentNode.func != undefined) currentNode.func();
+    if (currentNode.func2 != undefined) currentNode.func2();
     
     //Checks if player's pressRating is now less than 0 (which ends the game)
     if (player.pressRating <= 0) {

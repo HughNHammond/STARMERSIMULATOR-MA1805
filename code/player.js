@@ -65,9 +65,12 @@ let player = {
         this.nextPressRating = this.pressRating + pressChange;
     },
 
-    modifyPublicRating: function() {
+    modifyPublicRating: function(publicAdd) {
     //This function calculate a value in a random range and adds it to nextPublicRating
-        let publicChange = Math.round(random(-5, 5));
+        let publicChange;
+        if (publicAdd === null || publicAdd === undefined) publicChange =  Math.round(random(-1, 1));
+        else publicChange = publicAdd;
+
         this.nextPublicRating = this.publicRating + publicChange;
     },
 
@@ -92,7 +95,7 @@ let player = {
                 this.publicRating--;
             }
 
-            this.publicRating = clamp(this.pressRating, 0, 100)
+            this.publicRating = clamp(this.publicRating, 0, 100)
         }
     },
     
