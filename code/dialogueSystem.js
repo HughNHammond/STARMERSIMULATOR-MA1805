@@ -79,7 +79,7 @@ function createDialogueEvents() {
         {label: "mcsweeney8", speaker: mcsweeney.name, dialogue: "You better not be crying again, Keir."},
         {label: "mcsweeney10", speaker: mcsweeney.name, dialogue: "We have to get the press back on board. They'll tell the public all they need to know about us."},
         {label: "mcsweeney11", speaker: mcsweeney.name, dialogue: "But there's been a fuck-up Keir. Our team was so busy reminding people you're not Jeremy Corbyn..."},
-        {label: "mcsweeney12", speaker: mcsweeney.name, dialogue: "We forgot to actually write your speech."},
+        {label: "mcsweeney12", speaker: mcsweeney.name, dialogue: "... we forgot to actually write your speech."},
         {label: "mcsweeney13", speaker: mcsweeney.name, dialogue: "Oh stop crying Keir. You're going to be fine."},
         {label: "mcsweeney14", speaker: mcsweeney.name, dialogue: "You are going to be fine. Because if not..."},
         {label: "mcsweeney15", speaker: mcsweeney.name, dialogue: "Well, let's not think about that."},
